@@ -4,9 +4,9 @@
 
 <div id="topics">
   <% @topics.each do |topic| %>
-    <%= render topic %>
+    <%= render 'topics/topic', topic: topic  %>
     <p>
-      <%= link_to "Show this topic", topic %>
+      <%= link_to "Show this topic", topic_path(id: topic) %>
     </p>
   <% end %>
 </div>

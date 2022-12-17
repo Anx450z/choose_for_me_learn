@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 
   # GET /topics or /topics.json
   def index
-    @topics = Topic.all
+    @topics = Topic.where(type: topic_type).all
   end
 
   # GET /topics/1 or /topics/1.json
@@ -58,13 +58,17 @@ class TopicsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_topic
-      @topic = Topic.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def topic_params
-      params.require(:topic).permit(:title, :rating, :type)
-    end
+  def set_topic
+    @topic = Topic.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def topic_params
+    params.require(:topic).permit(:title, :rating, :type)
+  end
+
+  def topic_type
+    "Topic::#{params[:type].singularize.titleize}"
+  end
 end
