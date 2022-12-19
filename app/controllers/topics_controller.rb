@@ -3,13 +3,13 @@ class TopicsController < ApplicationController
 
   # GET /topics or /topics.json
   def index
-    @topics = Topic.where(type: topic_type).all
+    @topic = current_user.randomize(topic_type)
   end
 
   # GET /topics/1 or /topics/1.json
   def show
   end
-
+  
   # GET /topics/new
   def new
     @topic = Topic.new
