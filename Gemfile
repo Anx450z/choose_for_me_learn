@@ -79,3 +79,5 @@ gem "devise", "~> 4.8"
 gem "faker", "~> 3.0"
 
 
+
+gem "tailwindcss-rails", "~> 2.0"
