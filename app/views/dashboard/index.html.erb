@@ -1,9 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class='font-3xl'>Dashboard</h1>
+<div class='border font-bold text-red-700'>Dashboard</div>
 
 <div id="dashboard">
-  <%= link_to 'Movies', topics_path('movies') %>
+  <%= link_to 'Movies', topics_path('movies'), class: 'font-xl' %>
   <%= link_to 'Foods', topics_path('foods') %>
   <%= link_to 'Books', topics_path('books') %>
 </div>
