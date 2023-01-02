@@ -1,5 +1,6 @@
 class Topic < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :rejections
+  has_many :users, through: :rejections
   scope :movies, -> { where(type: 'Topic::Movie') }
   scope :foods, -> { where(type: 'Topic::Food') }
   scope :books, -> { where(type: 'Topic::Book') }

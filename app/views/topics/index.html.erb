@@ -1,9 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class='font-3xl'><%= params[:type].titleize  %></h1>
-
-<div id="topics">
-  <%= render 'topics/topic', topic: @topic  %>
+<h1 class='heading text-blue-700'><%= params[:type].titleize  %></h1>
+<div class='container'>
+  <div id="topics" class='card'>
+    <%= render 'topics/topic', topic: @topic  %>
+  </div>
 </div>
-
-<%= link_to "New topic", new_topic_path %>
+<div class='container flex-col'>
+  <div class='flex justify-center'>
+    <%= link_to "Next Suggestion",topics_path, class: 'btn-primary'%>
+  </div>
+    <%= render 'layouts/history', { options: @current_user.topics.where(type: topic_type(params[:type])), clear_history_path: clear_history_topics_path } %>
+  <div class='container py-2'>
+    <%= link_to "New topic", new_topic_path, class: 'flex btn-secondary' %>
+  </div>
+</div>

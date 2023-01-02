@@ -1,9 +1,9 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ show edit update destroy ]
-
+  include TopicsHelper
   # GET /topics or /topics.json
   def index
-    @topic = current_user.randomize(topic_type)
+    @topic = current_user.randomize(topic_type(params[:type]))
   end
 
   # GET /topics/1 or /topics/1.json
@@ -52,9 +52,16 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: "Topic was successfully destroyed." }
+      format.html { redirect_to topics_url, notice: "Topic was successfully deleted" }
       format.json { head :no_content }
     end
+  end
+
+  def clear_history
+    options = current_user.topics.where(type: topic_type(params[:type]))
+    current_user.rejections.where(topic_id: [options.ids]).delete_all
+    flash[:notice] = 'History has been cleared'
+    redirect_to topics_path(params[:type])
   end
 
   private
@@ -68,7 +75,4 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:title, :rating, :type)
   end
 
-  def topic_type
-    "Topic::#{params[:type].singularize.titleize}"
-  end
 end

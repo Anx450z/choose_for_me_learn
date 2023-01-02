@@ -25,6 +25,10 @@
     @apply w-fit bg-gradient-to-t from-red-600 to-red-500 rounded-full px-5 py-2 text-white font-semibold;
   }
 
+  .container {
+    @apply flex justify-center min-w-full
+  }
+
   /* width */
 ::-webkit-scrollbar {
   width: 5px;

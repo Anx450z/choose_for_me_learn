@@ -1,9 +1,12 @@
 <p style="color: green"><%= notice %></p>
+  <div class='heading text-red-700'>Dashboard</div>
+<div class='container '>
+  <div class='card'>
 
-<div class='border font-bold text-red-700'>Dashboard</div>
-
-<div id="dashboard">
-  <%= link_to 'Movies', topics_path('movies'), class: 'font-xl' %>
-  <%= link_to 'Foods', topics_path('foods') %>
-  <%= link_to 'Books', topics_path('books') %>
+      <div id="dashboard" class='flex-col p-2 justify-center'>
+        <%= link_to 'Movies', topics_path('movies'), class: 'btn-primary' %>
+        <%= link_to 'Foods', topics_path('foods'), class: 'btn-primary' %>
+        <%= link_to 'Books', topics_path('books'), class: 'btn-primary' %>
+      </div>
+    <div>
 </div>

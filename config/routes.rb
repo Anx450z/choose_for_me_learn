@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'dashboard#index'
   scope '/:type' do 
-    resources :topics
+    resources :topics do
+      collection do
+        post :clear_history
+      end
+    end
   end
 end
